@@ -1,11 +1,7 @@
 <?php
 session_start();
+session_destroy();
+header("Location: final_login.php");
 
-if (isset($_POST['logout'])) {
-    session_destroy(); // Destroy the user session
-    
-    // Redirect the user to the login page
-    header("Location: final_login.php");
-    exit();
-}
+
 ?>

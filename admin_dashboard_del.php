@@ -67,6 +67,7 @@
             <a href="/aboutus.html" class="navbar-link">About Us</a>
           </li>
         </ul>
+        <a href="logout.php" class="btn btn-secondary">logout</a>
 
         <form method='post' action='logout.php'><input type='hidden' name='id' value='".$row['Id']."'><input class='btn btn-secondary' type='submit' value='Delete'></form>
 
@@ -90,7 +91,7 @@
 
     <?php
     // Establish database connection
-    $servername = "localhost:3307";
+    $servername = "localhost";
     $username = "root";
     $password = "";
     $dbname = "testdb";
