@@ -1,3 +1,24 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Login</title>
+</head>
+<body>
+	<h2>Login Form</h2>
+	<form action="final_login.php" method="POST">
+		<label>Username:</label><br>
+		<input type="text" name="username" required><br>
+		<label>Password:</label><br>
+		<input type="password" name="password" required><br><br>
+		<label>Login as:</label><br>
+		<select name="usertype" required>
+			<option value="user">User</option>
+			<option value="admin">Admin</option>
+		</select><br><br>
+		<input type="submit" value="Login">
+	</form>
+</body>
+</html>
 
 
 <?php

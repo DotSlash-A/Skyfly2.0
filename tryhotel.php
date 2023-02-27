@@ -14,7 +14,7 @@ $checkin_date = $_POST['checkin_date'];
 $checkout_date = $_POST['checkout_date'];
 
 // insert the booking information into the database
-$sql = "INSERT INTO bookings (user_id, hotel_name, checkin_date, checkout_date) VALUES (?, ?, ?, ?)";
+$sql = "INSERT INTO hotelbookings (user_id, hotel_name, checkin_date, checkout_date) VALUES (?, ?, ?, ?)";
 $stmt = $pdo->prepare($sql);
 $stmt->execute([$_SESSION['id'], $hotel_name, $checkin_date, $checkout_date]);
 
