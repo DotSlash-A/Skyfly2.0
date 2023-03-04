@@ -33,7 +33,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
   $stmt->execute();
 
   // Redirect the user to the login page
-  header("Location: final_login.php");
+  header("Location: final_login.html");
   exit();
 }
 ?>

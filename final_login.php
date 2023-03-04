@@ -1,24 +1,3 @@
-<!DOCTYPE html>
-<html>
-<head>
-	<title>Login</title>
-</head>
-<body>
-	<h2>Login Form</h2>
-	<form action="final_login.php" method="POST">
-		<label>Username:</label><br>
-		<input type="text" name="username" required><br>
-		<label>Password:</label><br>
-		<input type="password" name="password" required><br><br>
-		<label>Login as:</label><br>
-		<select name="usertype" required>
-			<option value="user">User</option>
-			<option value="admin">Admin</option>
-		</select><br><br>
-		<input type="submit" value="Login">
-	</form>
-</body>
-</html>
 
 
 <?php
@@ -53,20 +32,27 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
   // Check if the user exists and has the correct user type
   if ($result->num_rows == 1) {
     $row = $result->fetch_assoc();
+    $user_id = $row["id"];
     if ($row["usertype"] == "admin" && $usertype == "admin") {
       // The user is an admin, so redirect to the admin dashboard
       $_SESSION["username"] = $username;
+      $_SESSION['user_id'] = $user['id'];
       header("Location: admin_dashboard_del.php");
       exit();
     } elseif ($row["usertype"] == "user" && $usertype == "user") {
       // The user is a regular user, so redirect to the user dashboard
       $_SESSION["username"] = $username;
-      header("Location: user_dashboard.php");
+      $_SESSION['user_id'] = $user_id;
+      header("Location: auserbook.php");
       exit();
     }
   }
 
   // If the user doesn't exist or has the wrong user type, show an error message
   echo "Invalid username or password for the selected user type.";
+  echo '<br><br>';
+  echo "<td><form method='post' action='admin_add.html'><input class='btn btn-primary' type='submit' value='add'></form></td>";
+  echo '<input href class="btn btn-primary" type="submit" value="retry">';
 }
+
 ?>

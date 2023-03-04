@@ -1,5 +1,3 @@
-
-<!-- Path: newloginform.php -->
 <!DOCTYPE html>
 <html lang="en">
 
@@ -30,6 +28,7 @@
 
 </head>
 
+<body id="top">
 <style>
 	input[type=text] {
 		border: 1px solid black;
@@ -41,9 +40,6 @@
 		padding: 8px;
 	}
 </style>
-
-<body id="top">
-
   <!-- 
     - #HEADER
   -->
@@ -99,23 +95,41 @@
   <article>
     <section class="section blog">
       <div class="container">   
-        <h2>Login Form</h2><br>
-	<form action="final_login.php" method="POST">
-		<label>Username:</label><br>
-		<input type="text" name="username" required style="width: 30%;"><br>
-		<label>Password:</label><br>
-		<input type="password" name="password" required style="width: 30%;"><br>
-		<label>Login as:</label><br>
-		<select name="usertype" required>
-			<option value="user">User</option>
-			<option value="admin">Admin</option>
-		</select><br><br>
+        <body>
+          <h1>Booking Page</h1>
+          <form action="paymentprocess1.php" method="POST">
+  <label for="cardnumber">Credit/Debit Card Number:</label>
+  <input type="text" id="cardnumber" name="cardnumber" required style="width:30%;">
+  <br>
+  <label for="year">Expiration Year:</label>
+  <input type="text" id="year" name="year" required style="width:30%;">
+  <br>
+  <label for="name">Name on Card:</label>
+  <input type="text" id="name" name="name" required style="width:30%;">
+  <br>
+  <label for="phonenumber">Phone Number:</label>
+  <input type="text" id="phonenumber" name="phonenumber" required style="width:30%;">
+  <br>
+  <input class="btn btn-primary" type="submit" value="Pay">
+</form>
 
-    <a href ="tryregister.html"> New User? Register Here!</a>
-    <br>
-		<input class="btn btn-primary" type="submit" value="Login">
-
-	</form>
+        </body>
+        </html>
+        
+        <?php
+        if ($_SERVER["REQUEST_METHOD"] == "POST") {
+          $cardnumber = $_POST["cardnumber"];
+          $year = $_POST["year"];
+          $name = $_POST["name"];
+          $phonenumber = $_POST["phonenumber"];
+          
+          // Here you would process the payment using the information provided
+          
+          // After processing the payment, you could redirect the user to a confirmation page
+          header("Location: confirmation_page.php");
+          exit;
+        }
+        ?>
               
 
   </article>

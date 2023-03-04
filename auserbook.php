@@ -1,5 +1,43 @@
+<?php
+session_start();
 
-<!-- Path: newloginform.php -->
+// Step 1: Establish a database connection
+$servername = "localhost:3307";
+$username = "root";
+$password = "";
+$dbname = "testdb";
+
+$conn = mysqli_connect($servername, $username, $password, $dbname);
+
+// Step 2: Retrieve all tours available
+$tours_query = "SELECT id, place, price, description FROM tours";
+$tours_result = mysqli_query($conn, $tours_query);
+
+// Step 5: Check user authentication
+// if ($_SESSION['usertype'] != 'user') {
+//     echo "Only users can book tours";
+//     exit();
+// }
+// $_SESSION['user_id']=1;
+
+// Step 6: Handle booking form submission
+if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+    $user_id = $_SESSION['user_id'];
+    $tour_id = $_POST['tour_id'];
+    $_SESSION['tour_id'] = $tour_id;
+    $booking_date="2023-02-28";
+    $booking_query = "INSERT INTO bookings (user_id, tour_id,booking_date) VALUES ($user_id, $tour_id,$booking_date)";
+    mysqli_query($conn, $booking_query);
+    echo "Booking successful!";
+    header("Location: paymentpage.php");
+    exit();
+}
+
+?>
+
+
+
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -29,18 +67,6 @@
     rel="stylesheet">
 
 </head>
-
-<style>
-	input[type=text] {
-		border: 1px solid black;
-		padding: 8px;
-	}
-
-	input[type=password] {
-		border: 1px solid black;
-		padding: 8px;
-	}
-</style>
 
 <body id="top">
 
@@ -80,8 +106,14 @@
           <li>
             <a href="/aboutus.html" class="navbar-link">About Us</a>
           </li>
-        </ul>
+       
 
+        
+        <li>
+            <a href="userviewfinal.php" class="navbar-link">My cart tours</a>
+          </li>
+        
+          </ul>
         <a href="#" class="btn btn-secondary">Booking Now</a>
 
       </nav>
@@ -99,25 +131,36 @@
   <article>
     <section class="section blog">
       <div class="container">   
-        <h2>Login Form</h2><br>
-	<form action="final_login.php" method="POST">
-		<label>Username:</label><br>
-		<input type="text" name="username" required style="width: 30%;"><br>
-		<label>Password:</label><br>
-		<input type="password" name="password" required style="width: 30%;"><br>
-		<label>Login as:</label><br>
-		<select name="usertype" required>
-			<option value="user">User</option>
-			<option value="admin">Admin</option>
-		</select><br><br>
-
-    <a href ="tryregister.html"> New User? Register Here!</a>
-    <br>
-		<input class="btn btn-primary" type="submit" value="Login">
-
-	</form>
-              
-
+      <h1>Welcome, <?php echo $_SESSION['username']; ?>!</h1>
+      <h1>your id is , <?php echo $_SESSION['user_id']; ?>!</h1>
+	<h2>Tours Available:</h2>
+	<table>
+		<thead>
+			<tr>
+				<th>ID</th>
+				<th>Place</th>
+				<th>Price</th>
+				<th>Description</th>
+				<th>Book</th>
+			</tr>
+		</thead>
+		<tbody>
+			<?php while ($tour = mysqli_fetch_assoc($tours_result)): ?>
+				<tr>
+					<td><?php echo $tour['id']; ?></td>
+					<td><?php echo $tour['place']; ?></td>
+					<td><?php echo $tour['price']; ?></td>
+					<td><?php echo $tour['description']; ?></td>
+					<td>
+						<form method="POST">
+							<input type="hidden" name="tour_id" value="<?php echo $tour['id']; ?>">
+							<button type="submit" class="btn btn-primary">Book</button>
+						</form>
+					</td>
+				</tr>
+			<?php endwhile; ?>
+		</tbody>
+	</table>
   </article>
 </main>
 

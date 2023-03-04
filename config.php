@@ -1,4 +1,4 @@
 <?
-$conn = mysqli_connect('localhost','root','','testdb')
+$conn = mysqli_connect('localhost:3307','root','','testdb')
 
 ?>

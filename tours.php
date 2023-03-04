@@ -131,7 +131,7 @@
       <section class="tour-search">
         <div class="container">
 
-          <form action="" class="tour-search-form">
+          <form  class="tour-search-form">
 
             <div class="input-wrapper">
               <label for="destination" class="input-label">Search Destination*</label>
@@ -147,22 +147,90 @@
             </div>
 
             <div class="input-wrapper">
-              <label for="checkin" class="input-label">Start date**</label>
+              <label for="checkin" class="input-label" min="2023-28-02" required>Start date**</label>
 
               <input type="date" name="checkin" id="checkin" required class="input-field">
             </div>
+            <!-- <a href="final_login.html" > <button type="submit" class="btn btn-primary">Enquire now</button></a>
+            <input href="final_login.html" class="btn btn-primary" type="submit" value="Know More">
+            <button type="submit" class="btn btn-primary">Enquire now</button> -->
+            <!-- <button class="btn btn-primary" onclick="location.href='final_login.html'">Book now</button> -->
 
-            <button type="submit" class="btn btn-secondary">Inquire now</button>
 
           </form>
+          <button class="btn btn-primary" onclick="location.href='final_login.html'">Book now</button>
+
 
         </div>
       </section>
 
+      <main>
+        <article>
+          <section class="section blog">
+            <div class="container">  
+            <h1> available tours <h1> 
+            <?php
+      // Connect to database
+      $servername = "localhost:3307";
+      $username = "root";
+      $password = "";
+      $dbname = "testdb";
+      $conn = new mysqli($servername, $username, $password, $dbname);
+      
+      // Check connection
+      if ($conn->connect_error) {
+          die("Connection failed: " . $conn->connect_error);
+      }
+      
+      // Query tours table
+      $sql = "SELECT * FROM tours";
+      $result = $conn->query($sql);
+      
+      // Generate HTML cards for each tour
+      if ($result->num_rows > 0) {
+          echo '<ul class="popular-list">';
+          while($row = $result->fetch_assoc()) {
+              echo '<li>';
+              echo '<div class="popular-card">';
+              echo '<figure class="card-banner">';
+              echo '<a href="#">';
+              echo '<img src="./assets/images/popular-1.jpg" width="740" height="518" loading="lazy" alt="'.$row["place"].'" class="img-cover">';
+              echo '</a>';
+              echo '</figure>';
+              echo '<div class="card-content">';
+              echo '<div class="card-wrapper">';
+              echo '<div class="card-price">From $'.$row["price"].'</div>';
+              echo '</div>';
+              echo '<h3 class="card-title">';
+              echo '<a href="#">'.$row["place"].'</a>';
+              echo '</h3>';
+              echo '<p class="card-description">'.$row["description"].'</p>';
+              echo '</div>';
+            //   echo '<form method="POST">';
+						// 	echo '<input type="hidden" name="tour_id" value="'.$row['id'].'">';
+						// 	echo '<button type="submit" class="btn btn-primary">Book</button>';
+						// echo '</form>';
+              echo '</div>';
+              echo '</li>';
+          }
+          echo '</ul>';
+      } else {
+          echo "No tours available.";
+      }
+      
+      // Close database connection
+      $conn->close();
+      ?>
+      
+                    
+      
+        </article>
+      </main>
 
-
-
-
+      
+      
+    
+      
 
       <!-- 
         - #POPULAR

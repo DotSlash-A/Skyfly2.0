@@ -1,5 +1,3 @@
-
-<!-- Path: newloginform.php -->
 <!DOCTYPE html>
 <html lang="en">
 
@@ -29,18 +27,6 @@
     rel="stylesheet">
 
 </head>
-
-<style>
-	input[type=text] {
-		border: 1px solid black;
-		padding: 8px;
-	}
-
-	input[type=password] {
-		border: 1px solid black;
-		padding: 8px;
-	}
-</style>
 
 <body id="top">
 
@@ -99,24 +85,60 @@
   <article>
     <section class="section blog">
       <div class="container">   
-        <h2>Login Form</h2><br>
-	<form action="final_login.php" method="POST">
-		<label>Username:</label><br>
-		<input type="text" name="username" required style="width: 30%;"><br>
-		<label>Password:</label><br>
-		<input type="password" name="password" required style="width: 30%;"><br>
-		<label>Login as:</label><br>
-		<select name="usertype" required>
-			<option value="user">User</option>
-			<option value="admin">Admin</option>
-		</select><br><br>
+      <?php
+// Connect to database
+$servername = "localhost:3307";
+$username = "root";
+$password = "";
+$dbname = "testdb";
+$conn = new mysqli($servername, $username, $password, $dbname);
 
-    <a href ="tryregister.html"> New User? Register Here!</a>
-    <br>
-		<input class="btn btn-primary" type="submit" value="Login">
+// Check connection
+if ($conn->connect_error) {
+    die("Connection failed: " . $conn->connect_error);
+}
 
-	</form>
-              
+// Query tours table
+$sql = "SELECT * FROM tours";
+$result = $conn->query($sql);
+
+// Generate HTML cards for each tour
+if ($result->num_rows > 0) {
+    echo '<ul class="popular-list">';
+    while($row = $result->fetch_assoc()) {
+        echo '<li>';
+        echo '<div class="popular-card">';
+        echo '<figure class="card-banner">';
+        echo '<a href="#">';
+        echo '<img src="./assets/images/popular-1.jpg" width="740" height="518" loading="lazy" alt="'.$row["place"].'" class="img-cover">';
+        echo '</a>';
+        echo '</figure>';
+        echo '<div class="card-content">';
+        echo '<div class="card-wrapper">';
+        echo '<div class="card-price">From $'.$row["price"].'</div>';
+        echo '</div>';
+        echo '<h3 class="card-title">';
+        echo '<a href="#">'.$row["place"].'</a>';
+        echo '</h3>';
+        echo '<p class="card-description">'.$row["description"].'</p>';
+        echo '</div>';
+        echo "<form method='post' action='admin_delete_tour.php'><input type='hidden' name='id' value='".$row['Id']."'><input class='btn btn-primary' type='submit' value='Delete'></form>";
+
+        echo '</div>';
+        echo "<td><form method='post' action='admin_delete_tour.php'><input type='hidden' name='id' value='".$row['Id']."'><input class='btn btn-primary' type='submit' value='Delete'></form></td>";
+        echo '</li>';
+    }
+    echo '</ul>';
+} else {
+    echo "No tours available.";
+}
+
+// Close database connection
+$conn->close();
+?>
+
+   
+
 
   </article>
 </main>
