@@ -70,7 +70,7 @@
             <a href="seebookingusers.php" class="navbar-link">report</a>
           </li>
         </ul>
-        <a href="logout.php" class="btn btn-secondary">logout</a>
+        <a href="logout.php" class="btn btn-secondary">logout</a> &nbsp;&nbsp;
 
         <form method='post' action='logout.php'><input type='hidden' name='id' value='".$row['Id']."'><input class='btn btn-secondary' type='submit' value='Delete'></form>
 
@@ -124,7 +124,8 @@
             echo "<td>".$row['price']."</td>";
             echo "<td>".$row['description']."</td>";
             echo "<td><form method='post' action='admin_delete_tour.php'><input type='hidden' name='id' value='".$row['Id']."'><input class='btn btn-primary' type='submit' value='Delete'></form></td>";
-            echo "<td><form method='post' action='admin_add.html'><input class='btn btn-primary' type='submit' value='add'></form></td>";
+            echo "<td><form method='post' action='admin_add.html'><input class='btn btn-primary' type='submit' value='Add'></form></td>";
+           echo "<td><form method='post' action='admin_update.html'><input class='btn btn-primary' type='submit' value='Update'></form></td>";
             echo "</tr>";
         }
         echo "</table>";
