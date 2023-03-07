@@ -28,6 +28,15 @@
 
 </head>
 
+  <style>
+  th, td {
+  padding: 10px;
+  border: 2px solid black;
+  border-color: #00cccc;
+}
+
+  </style>
+  
 <body id="top">
 
   <!-- 
