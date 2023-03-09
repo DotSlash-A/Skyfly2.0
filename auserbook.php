@@ -25,7 +25,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $user_id = $_SESSION['user_id'];
     $tour_id = $_POST['tour_id'];
     $_SESSION['tour_id'] = $tour_id;
-    $booking_date="2023-02-28";
+    $booking_date = "CURRENT_DATE()"; 
     $booking_query = "INSERT INTO bookings (user_id, tour_id,booking_date) VALUES ($user_id, $tour_id,$booking_date)";
     mysqli_query($conn, $booking_query);
     echo "Booking successful!";
@@ -67,7 +67,13 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     rel="stylesheet">
 
 </head>
-
+<style>
+  th,td{
+    padding: 10px;
+    border: 2px solid black;
+    border-color: #00cccc;
+  }
+</style>
 <body id="top">
 
   <!-- 
@@ -110,7 +116,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
         
         <li>
-            <a href="userviewfinal.php" class="navbar-link">My cart tours</a>
+            <a href="userfinalviewtable.php" class="navbar-link">My booked tours</a>
           </li>
         
           </ul>

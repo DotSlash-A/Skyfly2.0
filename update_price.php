@@ -1,6 +1,6 @@
 <?php
 // Connect to the MySQL database
-$servername = "localhost";
+$servername = "localhost:3307";
 $username = "root";
 $password = "";
 $dbname = "testdb";

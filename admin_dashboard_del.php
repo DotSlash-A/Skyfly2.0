@@ -76,7 +76,7 @@
             <a href="/aboutus.html" class="navbar-link">About Us</a>
           </li>
           <li>
-            <a href="seebookingusers.php" class="navbar-link">report</a>
+            <a href="finalreport.php" class="navbar-link">report</a>
           </li>
         </ul>
         <a href="logout.php" class="btn btn-secondary">logout</a> &nbsp;&nbsp;

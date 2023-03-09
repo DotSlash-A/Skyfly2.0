@@ -28,16 +28,13 @@
 
 </head>
 <style>
-	input[type=text] {
-		border: 1px solid black;
-		padding: 8px;
-	}
+  th, td {
+  padding: 10px;
+  border: 2px solid black;
+  border-color: #00cccc;
+}
 
-	input[type=password] {
-		border: 1px solid black;
-		padding: 8px;
-	}
-</style>
+  </style>
 
 <body id="top">
 
@@ -96,21 +93,60 @@
   <article>
     <section class="section blog">
       <div class="container">   
-        <h2>Registration Here!</h2>
-	<form action="tryregister.php" method="POST">
-		<label>Username:</label><br>
-		<input type="text" name="username" required style="width:50%;"><br>
-		<label>Password:</label><br>
-		<input type="password" name="password" required style="width:50%;" ><br><br>
-		<label>Confirm Password:</label><br>
-		<input type="password" name="confirm_password" required style="width:50%;"><br><br>
-		<label>User Type:</label><br>
-		<select name="usertype" required>
-			<option value="user">User</option>
-			<option value="admin">Admin</option>
-		</select><br><br>
-		<input type="submit" class="btn btn-primary"	 value="Register">
-	</form>
+        <h1> This is the Admin report!</h1>
+        <?php
+// Connect to the database
+$conn = mysqli_connect("localhost:3307", "root", "", "testdb");
+
+// Check connection
+if (!$conn) {
+    die("Connection failed: " . mysqli_connect_error());
+}
+
+// Query to retrieve all bookings with user information and tour information
+$sql = "SELECT bookings.id, users.username AS user_name, tours.place AS tour_name, bookings.booking_date
+        FROM bookings
+        JOIN users ON bookings.user_id = users.id
+        JOIN tours ON bookings.tour_id = tours.id";
+
+$result = mysqli_query($conn, $sql);
+
+// Check for errors
+if (!$result) {
+    echo "Error: " . mysqli_error($conn);
+    die();
+}
+
+// Check if there are any results
+if (mysqli_num_rows($result) > 0) {
+    echo "<table>
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>User Name</th>
+                    <th>Tour Name</th>
+                    <th>Booking Date</th>
+                </tr>
+            </thead>
+            <tbody>";
+    // Loop through each row and display the booking information
+    while($row = mysqli_fetch_assoc($result)) {
+        echo "<tr>
+                <td>" . $row["id"] . "</td>
+                <td>" . $row["user_name"] . "</td>
+                <td>" . $row["tour_name"] . "</td>
+                <td>" . $row["booking_date"] . "</td>
+            </tr>";
+    }
+    echo "</tbody></table>";
+} else {
+    echo "No bookings found.";
+}
+
+// Close the database connection
+mysqli_close($conn);
+?>
+
               
 
   </article>

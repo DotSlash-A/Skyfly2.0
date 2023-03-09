@@ -27,7 +27,14 @@
     rel="stylesheet">
 
 </head>
+<style>
+  th, td {
+  padding: 10px;
+  border: 2px solid black;
+  border-color: #00cccc;
+}
 
+  </style>
 <body id="top">
 
   <!-- 
@@ -87,7 +94,7 @@
       <div class="container">   
         
 
-<?php
+      <?php
 // Start the session (if not already started)
 session_start();
 
@@ -113,9 +120,7 @@ $conn = mysqli_connect($servername, $username, $password, $dbname);
 if (!$conn) {
     die("Connection failed: " . mysqli_connect_error());
 }
-
-// Prepare the SQL query with a join between the bookings and users tables
-$sql = "SELECT bookings.id, bookings.booking_date, tours.place, users.username
+$sql = "SELECT bookings.id, bookings.booking_date, tours.place, tours.price, users.username
         FROM bookings
         INNER JOIN tours ON bookings.tour_id = tours.id
         INNER JOIN users ON bookings.user_id = users.id
@@ -129,122 +134,38 @@ if (!$result) {
     die("Query failed: " . mysqli_error($conn));
 }
 
+// Initialize total price variable to 0
+$total_price = 0;
+
 // Check if any rows were returned
 if (mysqli_num_rows($result) > 0) {
-    // Loop through each row and display the booking details
+    // Start the table
+    echo "<table>";
+    echo "<tr><th>Booking ID</th><th>Booking Date</th><th>Tour Name</th><th>Tour Price</th><th>Username</th></tr>";
+
+    // Loop through each row and display the booking details in table rows
     while ($row = mysqli_fetch_assoc($result)) {
-        echo "Booking ID: " . $row["id"] . "<br>";
-        echo "Booking Date: " . $row["booking_date"] . "<br>";
-        echo "Tour Name: " . $row["place"] . "<br>";
-        echo "Username: " . $row["username"] . "<br><br>";
+        echo "<tr>";
+        echo "<td>" . $row["id"] . "</td>";
+        echo "<td>" . $row["booking_date"] . "</td>";
+        echo "<td>" . $row["place"] . "</td>";
+        echo "<td>" . $row["price"] . "</td>";
+        echo "<td>" . $row["username"] . "</td>";
+        echo "</tr>";
+        
+        // Add the tour price to the total price variable
+        $total_price += $row["price"];
     }
+
+    // Display the total price after all the tours
+    echo "<tr><td colspan='3'></td><td>Total Price:</td><td>$total_price</td></tr>";
+
+    // End the table
+    echo "</table>";
 } else {
     echo "No bookings found for the user.";
 }
 
 // Close the database connection
 mysqli_close($conn);
-
 ?>
-
-
-
-              
-
-  </article>
-</main>
-
-
-
-
-      
-
-
-
-
-
-      
-
-
-
-
-
-<!-- 
-    - #FOOTER
-  -->
-
-  <footer class="footer" style="background-image: url('./assets/images/footer-bg.png')">
-    <div class="container">
-
-      <div class="footer-top">       
-
-      </div>
-
-      <div class="footer-bottom">
-
-        <a href="#" class="logo">SkyFly</a>
-
-        <p class="copyright">
-          &copy; 2022 <a href="#" class="copyright-link">SkyFLy</a>. All Rights Reserved
-        </p>
-
-        <ul class="social-list">
-
-          <li>
-            <a href="#" class="social-link">
-              <ion-icon name="logo-facebook"></ion-icon>
-            </a>
-          </li>
-
-          <li>
-            <a href="#" class="social-link">
-              <ion-icon name="logo-twitter"></ion-icon>
-            </a>
-          </li>
-
-          <li>
-            <a href="#" class="social-link">
-              <ion-icon name="logo-instagram"></ion-icon>
-            </a>
-          </li>
-
-          <li>
-            <a href="#" class="social-link">
-              <ion-icon name="logo-linkedin"></ion-icon>
-            </a>
-          </li>
-
-          <li>
-            <a href="#" class="social-link">
-              <ion-icon name="logo-google"></ion-icon>
-            </a>
-          </li>
-
-        </ul>
-
-      </div>
-
-    </div>
-  </footer>
-
-
-
-
-
-
-  <!-- 
-    - #GO TO TOP
-  -->
-
-  <a href="#top" class="go-top" data-go-top aria-label="Go To Top">
-    <ion-icon name="chevron-up-outline"></ion-icon>
-  </a>
-
-  <script src="./assets/js/script.js"></script>
-
-  <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
-  <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
-
-</body>
-
-</html>
