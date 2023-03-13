@@ -1,6 +1,4 @@
-<?php
-	$dbhost = "localhost";
-	$dbuser = "root";
-	$dbpass = "";
-	$dbname = "testdb";
+<?
+$conn = mysqli_connect('localhost:3307','root','','testdb')
+
 ?>

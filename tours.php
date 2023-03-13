@@ -151,13 +151,13 @@
 
               <input type="date" name="checkin" id="checkin" required class="input-field">
             </div>
-            <!-- <a href="final_login.html" > <button type="submit" class="btn btn-primary">Enquire now</button></a>
-            <input href="final_login.html" class="btn btn-primary" type="submit" value="Know More">
-            <button type="submit" class="btn btn-primary">Enquire now</button> -->
-            <!-- <button class="btn btn-primary" onclick="location.href='final_login.html'">Book now</button> -->
+            
+
+            <button type="submit" class="btn btn-primary">Enquire now</button> 
+            <!-- <button class="btn btn-primary" onclick="location.href='final_login.html'">Book now</button>
 
 
-          </form>
+          <!-- </form> -->
           <button class="btn btn-primary" onclick="location.href='final_login.html'">Book now</button>
 
 

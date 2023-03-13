@@ -19,8 +19,12 @@
 		}
 
 		// Retrieve the list of flights from the database
-		$sql = "SELECT * FROM flights";
+		$sql = "SELECT * FROM newflights";
 		$result = mysqli_query($conn, $sql);
+
+		if (!$result) {
+			die("Query failed: " . mysqli_error($conn));
+	}
 
 		// Display the flights as a table
 		echo "<table>";
@@ -37,6 +41,8 @@
 		echo "</thead>";
 		echo "<tbody>";
 
+			// Check if the connection is successful
+	
 		// Loop through the results and display each flight as a table row with edit and delete buttons
 		while ($row = mysqli_fetch_assoc($result)) {
 			echo "<tr>";
@@ -48,11 +54,11 @@
 			echo "<td>" . $row['price'] . "</td>";
 			echo "<td>";
 			echo "<form method='post' action='editflight.php'>";
-			echo "<input type='hidden' name='flight_id' value='" . $row['flight_id'] . "'>";
+			echo "<input type='hidden' name='flight_id' value='" . $row['id'] . "'>";
 			echo "<input type='submit' value='Edit'>";
 			echo "</form>";
 			echo "<form method='post' action='deleteflight.php'>";
-			echo "<input type='hidden' name='flight_id' value='" . $row['flight_id'] . "'>";
+			echo "<input type='hidden' name='flight_id' value='" . $row['id'] . "'>";
 			echo "<input type='submit' value='Delete'>";
 			echo "</form>";
 			echo "</td>";

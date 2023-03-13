@@ -10,7 +10,11 @@ $dbname = "testdb";
 $conn = mysqli_connect($servername, $username, $password, $dbname);
 
 // Step 2: Retrieve all tours available
-$tours_query = "SELECT id, place, price, description FROM tours";
+// $tours_query = "SELECT id, place, price, description FROM tours";
+// $tours_result = mysqli_query($conn, $tours_query);
+$tours_query = "SELECT tours.id, tours.place, tours.price, tours.description, tourdate.date 
+                FROM tours 
+                JOIN tourdate ON tours.id = tourdate.tour_id";
 $tours_result = mysqli_query($conn, $tours_query);
 
 // Step 5: Check user authentication
@@ -28,7 +32,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $booking_date = "CURRENT_DATE()"; 
     $booking_query = "INSERT INTO bookings (user_id, tour_id,booking_date) VALUES ($user_id, $tour_id,$booking_date)";
     mysqli_query($conn, $booking_query);
-    echo "Booking successful!";
+    echo "Booking successful!";+
     header("Location: paymentpage.php");
     exit();
 }
@@ -157,6 +161,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 					<td><?php echo $tour['place']; ?></td>
 					<td><?php echo $tour['price']; ?></td>
 					<td><?php echo $tour['description']; ?></td>
+          <td><?php echo $tour['date']; ?></td>
 					<td>
 						<form method="POST">
 							<input type="hidden" name="tour_id" value="<?php echo $tour['id']; ?>">
