@@ -21,8 +21,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 }
 
 // Step 4: Retrieve all tours available
-$sql = "SELECT tours.id, tours.place, tours.price, tours.description, tourdate.date FROM tours INNER JOIN tourdate ON tours.Id = tourdate.tour_id WHERE tours.place = '".$_POST['place']."' AND tourdate.date = '".$_POST['tour_date']."'";
-$tours_result = mysqli_query($conn, $sql);
+$tours_query = "SELECT tours.id, tours.place, tours.price, tours.description, tourdate.date 
+                FROM tours 
+                JOIN tourdate ON tours.id = tourdate.tour_id";
+$tours_result = mysqli_query($conn, $tours_query);
 ?>
 
 <main>

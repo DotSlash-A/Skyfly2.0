@@ -9,32 +9,26 @@ $dbname = "testdb";
 
 $conn = mysqli_connect($servername, $username, $password, $dbname);
 
-// Step 2: Check if the Book Now button has been clicked
-if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-	$tour_id = $_POST['tour_id'];
-	$user_id = $_SESSION['user_id'];
-	$booking_date = date('Y-m-d');
-	
-	// Step 3: Insert a new booking into the bookings table
-	$insert_query = "INSERT INTO bookings (user_id, tour_id, booking_date) VALUES ('$user_id', '$tour_id', '$booking_date')";
-	mysqli_query($conn, $insert_query);
-}
-
-// Step 4: Retrieve all tours available
-$sql = "SELECT tours.id, tours.place, tours.price, tours.description, tourdate.date FROM tours INNER JOIN tourdate ON tours.Id = tourdate.tour_id WHERE tours.place = '".$_POST['place']."' AND tourdate.date = '".$_POST['tour_date']."'";
-$tours_result = mysqli_query($conn, $sql);
-?>
+// Step 2: Retrieve all tours available
+// $tours_query = "SELECT id, place, price, description FROM tours";
+// $tours_result = mysqli_query($conn, $tours_query);
+$tours_query = "SELECT tours.id, tours.place, tours.price, tours.description, tourdate.date 
+                FROM tours 
+                JOIN tourdate ON tours.id = tourdate.tour_id";
+$tours_result = mysqli_query($conn, $tours_query);?>
 
 <main>
   <article>
     <section class="section blog">
       <div class="container">   
       <h1>Welcome, <?php echo $_SESSION['username']; ?>!</h1>
-      <h1>Your ID is, <?php echo $_SESSION['user_id']; ?>!</h1>
+      <h1>your id is , <?php echo $_SESSION['user_id']; ?>!</h1>
 	<h2>Tours Available:</h2>
 	<div class="card-container">
 		<?php while ($tour = mysqli_fetch_assoc($tours_result)): ?>
 			<div class="card">
+        <!-- src="/pics/<?php echo $tour['id']; ?>.jpg" -->
+        
 				<img src="pics\<?php echo $tour['id']; ?>.jpeg" alt="<?php echo $tour['place']; ?>">
 				<div class="card-details">
 					<h3><?php echo $tour['place']; ?></h3>
@@ -51,7 +45,6 @@ $tours_result = mysqli_query($conn, $sql);
 	</div>
   </article>
 </main>
-
 <style>
 	.card-container {
 		display: flex;
@@ -95,22 +88,37 @@ $tours_result = mysqli_query($conn, $sql);
 	}
 	
 	.card-details .date {
-  font-size: 14px;
-  margin-bottom: 10px;
-  color: #888;
+		font-size: 14px;
+		margin-bottom: 10px;
+	}
+	
+	.card-details form {
+		display: flex;
+		justify-content: flex-end;
+	}
+	
+	.card-details form button {
+		margin-left: 10px;
+	}
+</style> 
+
+<?php
+// Check if the book now button is clicked
+if (isset($_POST['book_now'])) {
+  // Retrieve the user_id from the session
+  $user_id = $_SESSION['user_id'];
+  // Retrieve the tour_id from the form
+  $tour_id = $_POST['tour_id'];
+  // Insert the booking record into the bookings table
+  $booking_date = date("Y-m-d");
+  $sql = "INSERT INTO bookings (user_id, tour_id, booking_date) VALUES ('$user_id', '$tour_id', '$booking_date')";
+  if (mysqli_query($conn, $sql)) {
+    echo "Booking successful";
+  } else {
+    echo "Error: " . $sql . "<br>" . mysqli_error($conn);
   }
-  .btn {
-	padding: 10px 20px;
-	background-color: #008CBA;
-	color: #fff;
-	border: none;
-	border-radius: 5px;
-	cursor: pointer;
-	transition: background-color 0.3s ease;
 }
 
-.btn:hover {
-	background-color: #005f84;
-}
-</style>
-<?php mysqli_close($conn); ?>
+// Close the database connection
+mysqli_close($conn);
+?>

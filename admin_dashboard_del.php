@@ -133,7 +133,7 @@
             echo "<td>".$row['price']."</td>";
             echo "<td>".$row['description']."</td>";
             echo "<td><form method='post' action='admin_delete_tour.php'><input type='hidden' name='id' value='".$row['Id']."'><input class='btn btn-primary' type='submit' value='Delete'></form></td>";
-            echo "<td><form method='post' action='admin_add.html'><input class='btn btn-primary' type='submit' value='Add'></form></td>";
+            echo "<td><form method='post' action='newadmin_add.html'><input class='btn btn-primary' type='submit' value='Add'></form></td>";
            echo "<td><form method='post' action='admin_update.html'><input class='btn btn-primary' type='submit' value='Update'></form></td>";
             echo "</tr>";
         }

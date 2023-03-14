@@ -153,14 +153,14 @@
             </div>
             
 
-            <button type="submit" class="btn btn-primary">Enquire now</button> 
-            <!-- <button class="btn btn-primary" onclick="location.href='final_login.html'">Book now</button>
 
 
-          <!-- </form> -->
+          </form>
           <button class="btn btn-primary" onclick="location.href='final_login.html'">Book now</button>
 
-
+          <!-- <input href="final_login.html" class="btn btn-primary" type="submit" value="Know More">
+            <button type="submit" class="btn btn-primary">Enquire now</button>  -->
+            <!-- <button class="btn btn-primary" onclick="location.href='final_login.html'">Book now</button>
         </div>
       </section>
 

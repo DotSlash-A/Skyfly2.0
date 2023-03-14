@@ -1,9 +1,6 @@
-<!DOCTYPE html>
 <html>
-<head>
-	<title>Tour Booking</title>
-</head>
-<body>
+  <body>
+	
 	<h1>Tour Booking</h1>
 	
 	<form method="post" action="booktour.php">
