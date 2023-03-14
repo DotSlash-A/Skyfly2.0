@@ -31,7 +31,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $booking_query = "INSERT INTO bookings (user_id, tour_id,booking_date) VALUES ($user_id, $tour_id,$booking_date)";
     mysqli_query($conn, $booking_query);
     echo "Booking successful!";+
-    // header("Location: paymentpage.php");
+    header("Location: paymentpage.php");
     exit();
 }
 

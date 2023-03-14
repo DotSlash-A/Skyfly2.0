@@ -1,6 +1,6 @@
 <?php
 // Include the database configuration file
-require_once('conf.php');
+require_once('config.php');
 
 try {
     // Create the tourdate table

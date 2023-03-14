@@ -23,6 +23,7 @@
         $arrival_date = $_POST["arrival_date"];
         $arrival_time = $_POST["arrival_time"];
         $price = $_POST["price"];
+        
 
         // Insert the data into the flights table
         $sql = "INSERT INTO newflights (airline, flight_number, origin, destination, departure_date, departure_time, arrival_date, arrival_time, price)
