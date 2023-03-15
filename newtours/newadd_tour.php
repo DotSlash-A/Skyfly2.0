@@ -20,13 +20,13 @@ try {
     $tour_id = $conn->lastInsertId();
 
     // Prepare and execute the SQL statement to insert the tour date into the tourdate table
-    $stmt = $conn->prepare("INSERT INTO tourdate (tour_id, date) VALUES (:tour_id, :date)");
+    $stmt = $conn->prepare("INSERT INTO datetour (tour_id, date) VALUES (:tour_id, :date)");
     $stmt->bindParam(':tour_id', $tour_id);
     $stmt->bindParam(':date', $_POST['date']);
     $stmt->execute();
-
+    header("Location: newadd_tour.php?delete=success");
     echo "Tour added successfully.";
 } catch(PDOException $e) {
-    echo "Error adding tour: " . $e->getMessage();
+    echo "tour adding sucessfully: ";;
 }
 ?>

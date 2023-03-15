@@ -15,7 +15,7 @@ if ($conn->connect_error) {
 }
 
 // SQL query to create the table
-$sql = "CREATE TABLE cards (
+$sql = "CREATE TABLE cardstable (
 id INT(6) UNSIGNED AUTO_INCREMENT PRIMARY KEY,
 cardnumber VARCHAR(16) NOT NULL,
 year INT(4) NOT NULL,

@@ -1,3 +1,8 @@
+<?php error_reporting (E_ALL ^ E_NOTICE); ?> 
+
+<?php error_reporting(0); ?> 
+
+
 <?php
 session_start();
 
@@ -21,7 +26,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 }
 
 // Step 4: Retrieve all tours available
-$sql = "SELECT tours.id, tours.place, tours.price, tours.description, tourdate.date FROM tours INNER JOIN tourdate ON tours.Id = tourdate.tour_id WHERE tours.place = '".$_POST['place']."' AND tourdate.date = '".$_POST['tour_date']."'";
+$sql = "SELECT tours.id, tours.place, tours.price, tours.description, datetour.date FROM tours INNER JOIN datetour ON tours.Id = datetour.tour_id WHERE tours.place = '".$_POST['place']."' AND datetour.date = '".$_POST['tour_date']."'";
 $tours_result = mysqli_query($conn, $sql);
 ?>
 
@@ -35,7 +40,7 @@ $tours_result = mysqli_query($conn, $sql);
 	<div class="card-container">
 		<?php while ($tour = mysqli_fetch_assoc($tours_result)): ?>
 			<div class="card">
-				<img src="pics\<?php echo $tour['id']; ?>.jpeg" alt="<?php echo $tour['place']; ?>">
+			<img src="pics\<?php echo $tour['id']; ?>.jpeg" alt="<?php echo $tour['place']; ?>">
 				<div class="card-details">
 					<h3><?php echo $tour['place']; ?></h3>
 					<p><?php echo $tour['description']; ?></p>

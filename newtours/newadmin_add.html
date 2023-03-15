@@ -1,24 +1,108 @@
 <!DOCTYPE html>
 <html>
-<head>
-	<title>Add Tour</title>
-</head>
+	<head>
+		<meta charset="UTF-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<title>SkyFly - Explore the World</title>
+	
+		<!-- 
+			- favicon
+		-->
+		<link rel="shortcut icon" href="./favicon.svg" type="image/svg+xml">
+	
+		<!-- 
+			- custom css link
+		-->
+		<link rel="stylesheet" href="../assets/css/style.css">
+	
+		<!-- 
+			- google font link
+		-->
+		<link rel="preconnect" href="https://fonts.googleapis.com">
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+		<link
+			href="https://fonts.googleapis.com/css2?family=Abril+Fatface&family=Comforter+Brush&family=Heebo:wght@400;500;600;700&display=swap"
+			rel="stylesheet">
+	
+	</head>
+	<style>
+		input[type=text] {
+			border: 1px solid black;
+			padding: 8px;
+		}
+	
+		input[type=number] {
+			border: 1px solid black;
+			padding: 8px;
+		}
+		input[type=date] {
+			border: 1px solid black;
+			padding: 8px;
+		}
+	</style>
 <body>
+	<header class="header" data-header>
+    <div class="container">
+
+      <a href="#">
+        <h1 class="logo">SkyFly</h1>
+      </a>
+
+      <button class="nav-toggle-btn" data-nav-toggle-btn aria-label="Toggle Menu">
+        <ion-icon name="menu-outline" class="open"></ion-icon>
+        <ion-icon name="close-outline" class="close"></ion-icon>
+      </button>
+
+      <nav class="navbar">
+
+        <ul class="navbar-list">
+
+          <li>
+            <a href="#" class="navbar-link">Destinations</a>
+          </li>
+
+          <li>
+            <a href="/tours.html" class="navbar-link">Tours</a>
+          </li>
+
+          <li>
+            <a href="/hotels.html" class="navbar-link">Hotels</a>
+          </li>
+
+
+          <li>
+            <a href="/aboutus.html" class="navbar-link">About Us</a>
+          </li>
+        </ul>
+
+        <a href="#" class="btn btn-secondary">Booking Now</a>
+
+      </nav>
+
+    </div>
+  </header>
 	<h1>Add Tour</h1>
+	
+
 	<form action="newadd_tour.php" method="post">
 		<label for="place">Place:</label>
-		<input type="text" name="place" required><br><br>
+		<input type="text" name="place" style="width: 30%;"><br><br>
 
 		<label for="price">Price:</label>
-		<input type="number" name="price" required><br><br>
+		<input type="number" name="price" required style="width: 30%;"><br><br>
 
 		<label for="description">Description:</label>
-		<textarea name="description" rows="5" required></textarea><br><br>
+		<textarea name="description" rows="5" required style="width: 30%;"></textarea><br><br>
 
 		<label for="date">Date:</label>
-		<input type="date" name="date" required><br><br>
+		<input type="date" name="date" required style="width: 30%;"><br><br>
 
-		<input type="submit" value="Add Tour">
+		<input type="submit" class="btn btn-primary" value="Add Tour">
 	</form>
+
 </body>
+
+</style>
+
 </html>

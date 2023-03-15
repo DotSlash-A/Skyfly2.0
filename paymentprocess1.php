@@ -20,7 +20,7 @@ if (!$conn) {
 }
 
 // Insert card information into cards table
-$sql = "INSERT INTO cards (cardnumber, year, name, phonenumber, userid) VALUES ('$card_number', '$exp_year', '$name_on_card', '$phone_number', '$user_id')";
+$sql = "INSERT INTO cardstable (cardnumber, year, name, phonenumber, userid) VALUES ('$card_number', '$exp_year', '$name_on_card', '$phone_number', '$user_id')";
 
 if (mysqli_query($conn, $sql)) {
   echo "Card added successfully.";

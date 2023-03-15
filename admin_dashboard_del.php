@@ -46,7 +46,7 @@
   <header class="header" data-header>
     <div class="container">
 
-      <a href="#">
+      <a href="./myindex.html">
         <h1 class="logo">SkyFly</h1>
       </a>
 
@@ -59,24 +59,20 @@
 
         <ul class="navbar-list">
 
-          <li>
-            <a href="#" class="navbar-link">Destinations</a>
-          </li>
+          
 
           <li>
-            <a href="/tours.html" class="navbar-link">Tours</a>
+            <a href="./tours.php" class="navbar-link">Tours</a>
           </li>
 
-          <li>
-            <a href="/hotels.html" class="navbar-link">Hotels</a>
-          </li>
+          
 
 
           <li>
-            <a href="/aboutus.html" class="navbar-link">About Us</a>
+            <a href="./aboutus.html" class="navbar-link">About Us</a>
           </li>
           <li>
-            <a href="finalreport  .php" class="navbar-link">report</a>
+            <a href="finalreport.php" class="navbar-link">report</a>
           </li>
         </ul>
         <a href="logout.php" class="btn btn-secondary">logout</a> &nbsp;&nbsp;
@@ -133,11 +129,12 @@
             echo "<td>".$row['price']."</td>";
             echo "<td>".$row['description']."</td>";
             echo "<td><form method='post' action='admin_delete_tour.php'><input type='hidden' name='id' value='".$row['Id']."'><input class='btn btn-primary' type='submit' value='Delete'></form></td>";
-            echo "<td><form method='post' action='newadmin_add.html'><input class='btn btn-primary' type='submit' value='Add'></form></td>";
+            
            echo "<td><form method='post' action='admin_update.html'><input class='btn btn-primary' type='submit' value='Update'></form></td>";
             echo "</tr>";
         }
         echo "</table>";
+        echo "<form method='post' action='newtours/newadmin_add.html'><input class='btn btn-primary' type='submit' value='Add a new tour'></form>";
     } else {
         echo "No tours found.";
     }

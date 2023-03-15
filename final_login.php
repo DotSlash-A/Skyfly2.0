@@ -43,7 +43,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
       // The user is a regular user, so redirect to the user dashboard
       $_SESSION["username"] = $username;
       $_SESSION['user_id'] = $user_id;
-      header("Location: auserbook.php");
+      header("Location: tours.php");
       exit();
     }
   }

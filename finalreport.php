@@ -75,8 +75,10 @@
             <a href="/aboutus.html" class="navbar-link">About Us</a>
           </li>
         </ul>
+        <!-- HTML code for the button -->
+<button onclick="location.href='logout.php'">Logout</button>
 
-        <a href="#" class="btn btn-secondary">Booking Now</a>
+        <!-- <a href="/logout.php" class="btn btn-secondary">logout</a> -->
 
       </nav>
 

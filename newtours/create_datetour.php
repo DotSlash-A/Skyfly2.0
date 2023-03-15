@@ -4,7 +4,7 @@ require_once('config.php');
 
 try {
     // Create the tourdate table
-    $sql = "CREATE TABLE tourdate (
+    $sql = "CREATE TABLE datetour (
                 id INT(11) NOT NULL AUTO_INCREMENT PRIMARY KEY,
                 tour_id INT(11) NOT NULL,
                 date DATE NOT NULL,

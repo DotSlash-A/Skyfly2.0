@@ -37,7 +37,7 @@
   <header class="header" data-header>
     <div class="container">
 
-      <a href="#">
+      <a href="myindex.html">
         <h1 class="logo">SkyFly</h1>
       </a>
 
@@ -51,18 +51,18 @@
         <ul class="navbar-list">
 
           <li>
-            <a href="/index.html" class="navbar-link">Home</a>
+            <a href="/myindex.html" class="navbar-link">Home</a>
           </li>
 
           
 
-          <li>
+          <!-- <li>
             <a href="#" class="navbar-link">Destinations</a>
           </li>
           
           <li>
             <a href="/hotels.html" class="navbar-link">Hotels</a>
-          </li>
+          </li> -->
 
            <li>
             <a href="/aboutus.html" class="navbar-link">About Us</a>
@@ -74,7 +74,7 @@
 
         </ul>
 
-        <a href="#" class="btn btn-secondary">Booking Now</a>
+        <a href="final_login.html" class="btn btn-secondary">Booking Now</a>
 
       </nav>
 
@@ -113,13 +113,13 @@
             </p>
 
             <div class="btn-group">
-              <a href="#" class="btn btn-primary">Contact Us</a>
+              <a href="./final_login.html" class="btn btn-primary">Book now!</a>
 
-              <a href="#" class="btn btn-outline">Learn More</a>
+            
             </div>
 
           </div>
-
+          
           <figure class="hero-banner">
             <img src="./assets/images/orange_Modern_vacation.png" width="686" height="812" loading="lazy" alt="hero banner"
               class="w-100">
@@ -131,7 +131,7 @@
       <section class="tour-search">
         <div class="container">
 
-          <form  class="tour-search-form">
+          <!-- <form  class="tour-search-form">
 
             <div class="input-wrapper">
               <label for="destination" class="input-label">Search Destination*</label>
@@ -151,12 +151,15 @@
 
               <input type="date" name="checkin" id="checkin" required class="input-field">
             </div>
+          </form> -->
+          <!-- <button class="btn btn-primary" onclick="location.href='final_login.html'">Book now</button> -->
+          
             
 
-
-
-          </form>
-          <button class="btn btn-primary" onclick="location.href='final_login.html'">Book now</button>
+            <div class="btn-group" style="text-align:center;">
+            <a href="aanew_cards.php" class="btn btn-primary" style="display:block; width:50%; margin:0 auto;">view all tours</a>
+            <a href="./newtours/auserdrop.php" class="btn btn-outline" style="display:block; width:50%; margin:0 auto;">Search for tours</a>
+            </div>
 
           <!-- <input href="final_login.html" class="btn btn-primary" type="submit" value="Know More">
             <button type="submit" class="btn btn-primary">Enquire now</button>  -->

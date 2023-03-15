@@ -26,5 +26,4 @@ try {
     echo "Error creating table: " . $e->getMessage();
 }
 
-$conn = null;
 ?>

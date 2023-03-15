@@ -5,6 +5,7 @@ $dbname = 'testdb';
 $user = 'root';
 $pass = '';
 $charset = 'utf8mb4';
+// include_once 'config.php';
 
 // create a PDO instance (connect to the database)
 $dsn = "mysql:host=$host;dbname=$dbname;charset=$charset";
