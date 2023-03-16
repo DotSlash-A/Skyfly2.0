@@ -28,11 +28,7 @@ try {
     // header('Location: C:\xampp\htdocs\abc\admin_dashboard_del.php');
     echo "Tour added successfully.";
 } catch(PDOException $e) {
-    echo "Tour added succesfully"?>
-    <br><br>
-    <button onclick="location.href='C:/xampp/htdocs/abc/admin_dashboard_del.php'">View all the tour</button>
-    <div class="btn-group" style="text-align:center;">
-            <a href="../admin_dashboard_del.php" class="btn btn-primary" style="display:block; width:50%; margin:0 auto;">view all tours</a>
-<?php } ?>
+    echo "tour adding sucessfully: ";
 
-<!-- <button onclick="location.href='C:/xampp/htdocs/abc/admin_dashboard_del.php'">Go to Success Page</button> -->
+}
+?>

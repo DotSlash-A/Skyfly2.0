@@ -97,7 +97,7 @@
       <div class="container">   
         <body>
           <h1>Booking Page</h1>
-          <form action="paymentprocess1.php" method="POST">
+          <!-- <form action="paymentprocess1.php" method="POST">
   <label for="cardnumber">Credit/Debit Card Number:</label>
   <input type="text" id="cardnumber" name="cardnumber" required style="width:30%;">
   <br>
@@ -111,7 +111,31 @@
   <input type="text" id="phonenumber" name="phonenumber" required style="width:30%;">
   <br>
   <input class="btn btn-primary" type="submit" value="Pay">
+</form> -->
+<form action="paymentprocess1.php" method="POST">
+  <label for="cardnumber">Credit/Debit Card Number (16 digits):</label>
+  <input type="text" id="cardnumber" name="cardnumber" pattern="[0-9]{16}" required style="width:30%;">
+  <br>
+  <label for="year">Expiration Year:</label>
+  <select id="year" name="year" required style="width:30%;">
+    <option value="" selected disabled>Select year</option>
+    <?php
+      $current_year = date('Y');
+      for($i = $current_year; $i <= $current_year + 10; $i++) {
+        echo "<option value='$i'>$i</option>";
+      }
+    ?>
+  </select>
+  <br>
+  <label for="name">Name on Card:</label>
+  <input type="text" id="name" name="name" required style="width:30%;">
+  <br>
+  <label for="phonenumber">Phone Number (10 digits):</label>
+  <input type="text" id="phonenumber" name="phonenumber" pattern="[0-9]{10}" required style="width:30%;">
+  <br>
+  <input class="btn btn-primary" type="submit" value="Pay">
 </form>
+
 
         </body>
         </html>

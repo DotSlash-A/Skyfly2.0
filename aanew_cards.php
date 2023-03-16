@@ -18,6 +18,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 	// Step 3: Insert a new booking into the bookings table
 	$insert_query = "INSERT INTO bookings (user_id, tour_id, booking_date) VALUES ('$user_id', '$tour_id', '$booking_date')";
 	mysqli_query($conn, $insert_query);
+  echo "Booking successful!";+
+  header("Location: paymentpage.php");
 }
 
 // Step 4: Retrieve all tours available

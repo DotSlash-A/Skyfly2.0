@@ -51,8 +51,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
   // If the user doesn't exist or has the wrong user type, show an error message
   echo "Invalid username or password for the selected user type.";
   echo '<br><br>';
-  echo "<td><form method='post' action='admin_add.html'><input class='btn btn-primary' type='submit' value='add'></form></td>";
-  echo '<input href class="btn btn-primary" type="submit" value="retry">';
+  
+
+  echo '<div class="btn-group" style="text-align:center;">';
+  echo '<a href="final_login.html" class="btn btn-primary" style="display:block; width:50%; margin:0 auto;">retry</a>';
+  echo '</div>';
 }
 
 ?>
