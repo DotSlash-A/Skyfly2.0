@@ -91,14 +91,14 @@ $tours_result = mysqli_query($conn, $tours_query);
           </li>
 
           <li>
-            <a href="./tours.html" class="navbar-link">Tours Home</a>
+            <a href="./tours.php" class="navbar-link">Tours Home</a>
           </li>
 
           
 
 
           <li>
-            <a href="/aboutus.html" class="navbar-link">About Us</a>
+            <a href="./aboutus.html" class="navbar-link">About Us</a>
           </li>
         </ul>
 
