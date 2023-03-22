@@ -51,7 +51,7 @@
         <ul class="navbar-list">
 
           <li>
-            <a href="/myindex.html" class="navbar-link">Home</a>
+            <a href="./myindex.html" class="navbar-link">Home</a>
           </li>
 
           
@@ -65,7 +65,7 @@
           </li> -->
 
            <li>
-            <a href="/aboutus.html" class="navbar-link">About Us</a>
+            <a href="./aboutus.html" class="navbar-link">About Us</a>
           </li>
 
           
