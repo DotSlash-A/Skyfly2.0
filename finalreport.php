@@ -106,10 +106,12 @@ if (!$conn) {
 }
 
 // Query to retrieve all bookings with user information and tour information
-$sql = "SELECT bookings.id, users.username AS user_name, tours.place AS tour_name, bookings.booking_date
+$sql = "SELECT bookings.id, users.username AS user_name, tours.place AS tour_name,tours.price as amount, bookings.booking_date
         FROM bookings
         JOIN users ON bookings.user_id = users.id
         JOIN tours ON bookings.tour_id = tours.id";
+
+
 
 $result = mysqli_query($conn, $sql);
 
@@ -128,6 +130,7 @@ if (mysqli_num_rows($result) > 0) {
                     <th>User Name</th>
                     <th>Tour Name</th>
                     <th>Booking Date</th>
+                    <th>Amount</th>
                 </tr>
             </thead>
             <tbody>";
@@ -138,6 +141,7 @@ if (mysqli_num_rows($result) > 0) {
                 <td>" . $row["user_name"] . "</td>
                 <td>" . $row["tour_name"] . "</td>
                 <td>" . $row["booking_date"] . "</td>
+                <td>" . $row["amount"] . "</td>
             </tr>";
     }
     echo "</tbody></table>";

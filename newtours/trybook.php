@@ -14,20 +14,42 @@ $dbname = "testdb";
 
 $conn = mysqli_connect($servername, $username, $password, $dbname);
 
-// Step 2: Check if the Book Now button has been clicked
-if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-	$tour_id = $_POST['tour_id'];
-	$user_id = $_SESSION['user_id'];
-	$booking_date = date('Y-m-d');
-	
-	// Step 3: Insert a new booking into the bookings table
-	$insert_query = "INSERT INTO bookings (user_id, tour_id, booking_date) VALUES ('$user_id', '$tour_id', '$booking_date')";
-	mysqli_query($conn, $insert_query);
+// Step 2: Check if the user has clicked the Book Now button
+if (isset($_POST['book_now'])) {
+    $tour_id = $_POST['tour_id'];
+    $user_id = $_SESSION['user_id'];
+    $booking_date = date('Y-m-d');
+    $num_of_people = $_POST['num_of_people'];
+
+    // Step 3: Insert a new booking into the bookings table
+    $insert_query = "INSERT INTO bookings (user_id, tour_id, booking_date) VALUES ('$user_id', '$tour_id', '$booking_date')";
+    mysqli_query($conn, $insert_query);
+    $booking_id = mysqli_insert_id($conn);
+
+    $num_of_people_query = "INSERT INTO numofppl (tour_id, num_of_people) VALUES ('$tour_id', '$num_of_people')";
+    mysqli_query($conn, $num_of_people_query);
+    $num_of_people_id = mysqli_insert_id($conn);
+
+    // Step 4: Update the bookings table with the numofppl id
+    $update_query = "UPDATE bookings SET numofppl_id = '$num_of_people_id' WHERE id = '$booking_id'";
+    mysqli_query($conn, $update_query);
+
+    // Step 5: Redirect the user to the payment page
+    header("Location: ../paymentpage.php");
+    exit();
 }
 
-// Step 4: Retrieve all tours available
-$sql = "SELECT tours.id, tours.place, tours.price, tours.description, datetour.date FROM tours INNER JOIN datetour ON tours.Id = datetour.tour_id WHERE tours.place = '".$_POST['place']."' AND datetour.date = '".$_POST['tour_date']."'";
-$tours_result = mysqli_query($conn, $sql);
+// Step 6: Retrieve all tours available
+if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['place']) && isset($_POST['tour_date'])) {
+    $sql = "SELECT tours.id, tours.place, tours.price, tours.description,datetour.date 
+            FROM tours 
+            INNER JOIN datetour ON tours.Id = datetour.tour_id 
+            WHERE tours.place = '".$_POST['place']."' AND datetour.date = '".$_POST['tour_date']."'";
+    $tours_result = mysqli_query($conn, $sql);
+} else {
+    $tours_result = null;
+}
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -98,7 +120,7 @@ $tours_result = mysqli_query($conn, $sql);
           </li>
         </ul>
 
-        <a href="#" class="btn btn-secondary">Booking Now</a>
+        <a href="../logout" class="btn btn-secondary">logout</a>
 
       </nav>
 
@@ -123,6 +145,12 @@ $tours_result = mysqli_query($conn, $sql);
 					<div class="date">Available date: <?php echo $tour['date']; ?></div>
 					<form method="POST">
 						<input type="hidden" name="tour_id" value="<?php echo $tour['id']; ?>">
+						<label for="num_of_people">Number of People:</label>
+            <select id="num_of_people" name="num_of_people">
+                <?php for ($i = 1; $i <= 10; $i++): ?>
+                    <option value="<?php echo $i; ?>"><?php echo $i; ?></option>
+                <?php endfor; ?>
+            </select>
 						<button type="submit" class="btn btn-primary">Book Now</button>
 					</form>
 				</div>
@@ -131,6 +159,11 @@ $tours_result = mysqli_query($conn, $sql);
 	</div>
   </article>
 </main>
+
+
+
+
+
 
 <style>
 	.card-container {

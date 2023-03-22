@@ -62,7 +62,7 @@
           </li>
         </ul>
 
-        <a href="#" class="btn btn-secondary">Booking Now</a>
+        <a href="./logout.php" class="btn btn-secondary">logout</a>
 
       </nav>
 
@@ -71,15 +71,17 @@
 <!-- <h2>Welcome <?php echo $_SESSION['username']; ?>!</h2> -->
 	
   <div class="container">
-  <h1>My Bookings</h1>
+  <h1>Confirmation page</h1>
 	<table>
 		<tr>
-			<th>Tour</th>
-			<th>Date</th>
-			<th>Price</th>
-      <th>num_of_people</th>
-      <th>total_price</th>
-      <th>cancel</th>
+      <th>Id</th>
+      <th>place</th>
+      <th>date</th>
+      <th>price</th>
+      <th>number of people</th>
+      <th>total price</th>
+      <th>cancel the booking</th>
+
 		</tr>
 
 		<?php
@@ -143,10 +145,10 @@ echo "<td><form method='post' action='delete_booking.php'><input type='hidden' n
 
 		// $conn = null;
 		?>
-	</table>
+	</table><br><br>
   <div class="btn-group" style="text-align:center;">
             <a href="aanew_cards.php" class="btn btn-primary" style="display:block; width:30%; margin:0 auto;">view all tours</a>
-
+            <a href="paymentpage.php" class="btn btn-primary" style="display:block; width:30%; margin:0 auto;">continue to payment</a>
             </div>
 </div>
 </body>

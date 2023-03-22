@@ -76,18 +76,20 @@
         </ul>
 
         <a href="#" class="btn btn-secondary">Booking Now</a>
+        <a href="logout" class="btn btn-secondary">Booking Now</a>
 
       </nav>
 
     </div>
   </header>
 	
-	<h1>Tour Booking</h1>
+	
 	<main>
   <article>
     <section class="section blog">
 	<div class="container">   
-	<form method="post" action="booktour.php">
+  <h1>Tour Booking</h1>
+	<form method="post" action="./booktour.php">
 		<label for="place">Place:</label>
 		<select id="place" name="place" required>
 			<option value="">Select a place</option>
@@ -122,7 +124,7 @@
 		<input type="date" id="tour_date" name="tour_date" required min="2023-03-16" style="width: 30%;><br>
 
 <input type="submit" value="Search"><br>	
-		<input type="submit" class="btn btn-primary" value="Add Tour">	
+		<input type="submit" class="btn btn-primary" value="search tours">	
 </form>
 </div>
 </section>

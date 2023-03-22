@@ -24,15 +24,16 @@ try {
     $stmt->bindParam(':tour_id', $tour_id);
     $stmt->bindParam(':date', $_POST['date']);
     $stmt->execute();
-    header("Location: newadd_tour.php?delete=success");
+    header("Location: ../admin_dashboard_del.php");
     // header('Location: C:\xampp\htdocs\abc\admin_dashboard_del.php');
     echo "Tour added successfully.";
 } catch(PDOException $e) {
-    echo "Tour added succesfully"?>
-    <br><br>
-    <button onclick="location.href='C:/xampp/htdocs/abc/admin_dashboard_del.php'">View all the tour</button>
-    <div class="btn-group" style="text-align:center;">
-            <a href="../admin_dashboard_del.php" class="btn btn-primary" style="display:block; width:50%; margin:0 auto;">view all tours</a>
-<?php } ?>
+    header("Location: admin_dashboard_del.php");
+    // <br><br>
+    // <button onclick="location.href='C:/xampp/htdocs/abc/admin_dashboard_del.php'">View all the tour</button>
+    
+
+ }
+  ?>
 
 <!-- <button onclick="location.href='C:/xampp/htdocs/abc/admin_dashboard_del.php'">Go to Success Page</button> -->

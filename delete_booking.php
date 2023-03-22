@@ -32,7 +32,9 @@ if ($conn->query($sql) === TRUE) {
                 echo "Error deleting tour: " . $conn->error;
             }
         } else {
-            echo "Error retrieving tour ID: " . $conn->error;
+            // echo"Error getting tour_id: " . $conn->error;
+            header("Location: newpaidalltours_confirm.php?delete=success");
+           
         }
     } else {
         echo "Error deleting booking: " . $conn->error;

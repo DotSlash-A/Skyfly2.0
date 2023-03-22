@@ -31,7 +31,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 	mysqli_query($conn, $update_query);
   
 	// Step 6: Redirect the user to the payment page
-	header("Location: paymentpage.php");
+	header("Location: newpaidalltours_confirm.php");
 	exit();
 }
 
