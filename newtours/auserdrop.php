@@ -58,20 +58,20 @@
         <ul class="navbar-list">
 
           <li>
-            <a href="#" class="navbar-link">Destinations</a>
+            <a href="../myindex.html" class="navbar-link">Home</a>
           </li>
 
           <li>
-            <a href="/tours.html" class="navbar-link">Tours</a>
+            <a href="../tours.php" class="navbar-link">Tours</a>
           </li>
 
-          <li>
+<!--           <li>
             <a href="/hotels.html" class="navbar-link">Hotels</a>
-          </li>
+          </li> -->
 
 
           <li>
-            <a href="/aboutus.html" class="navbar-link">About Us</a>
+            <a href="../aboutus.html" class="navbar-link">About Us</a>
           </li>
         </ul>
 
