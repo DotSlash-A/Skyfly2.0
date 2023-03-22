@@ -77,6 +77,9 @@
 			<th>Tour</th>
 			<th>Date</th>
 			<th>Price</th>
+      <th>num_of_people</th>
+      <th>total_price</th>
+      <th>cancel</th>
 		</tr>
 
 		<?php
@@ -107,7 +110,7 @@
 		    // 	echo "<td>".$row['price']."</td>";
 		    // 	echo "</tr>";
 		    // }
-        $stmt = $conn->prepare("SELECT tours.place, datetour.date, tours.price, numofppl.num_of_people 
+        $stmt = $conn->prepare("SELECT bookings.id, tours.place, datetour.date, tours.price, numofppl.num_of_people 
         FROM bookings 
         JOIN tours ON bookings.tour_id = tours.id 
         JOIN datetour ON bookings.tour_id = datetour.tour_id 
@@ -119,12 +122,20 @@ $stmt->execute();
 // Fetch the results and display them in the table
 while ($row = $stmt->fetch()) {
 echo "<tr>";
+echo "<td>".$row['id']."</td>";
 echo "<td>".$row['place']."</td>";
 echo "<td>".$row['date']."</td>";
 echo "<td>".$row['price']."</td>";
 echo "<td>".$row['num_of_people']."</td>";
-echo "</tr>";
-}
+echo "<td>".$row['num_of_people']*$row['price']."</td>";
+echo "<td><form method='post' action='delete_booking.php'><input type='hidden' name='booking_id' value='".$row['id']."'><input class='btn btn-primary' type='submit' value='Delete'></form></td>";
+
+      }
+    ?>
+  </tbody>
+</table>
+    
+<?php
 
 		} catch(PDOException $e) {
 		    echo "Error: " . $e->getMessage();

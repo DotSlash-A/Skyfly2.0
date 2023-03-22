@@ -1,6 +1,4 @@
-
-	//
-	<?php
+<?php
 // Database configuration
 $dbhost = "localhost:3307";
 $dbname = "testdb";

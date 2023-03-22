@@ -1,0 +1,36 @@
+<?php
+   error_reporting(E_ALL);
+   ini_set('display_errors', 1);
+   
+    session_start();
+		// Establish a connection to the MySQL server
+		$host = 'localhost:3307';
+		$username = 'root';
+		$password = '';
+		$dbname = 'testdb';
+
+		try {
+		    $conn = new PDO("mysql:host=$host;dbname=$dbname", $username, $password);
+		    $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+
+		    // Prepare and execute the SQL statement to retrieve the user's bookings
+		    $stmt = $conn->prepare("SELECT bookings.id, tours.place, datetour.date, tours.price, numofppl.num_of_people 
+        FROM bookings 
+        JOIN tours ON bookings.tour_id = tours.id 
+        JOIN datetour ON bookings.tour_id = datetour.tour_id 
+        JOIN numofppl ON bookings.tour_id = numofppl.tour_id
+        WHERE bookings.user_id = :user_id");
+		    $stmt->bindParam(':user_id', $_SESSION['user_id']);
+		    $stmt->execute();
+
+		    // Fetch the results and display them in the table
+		    while ($row = $stmt->fetch()) {
+		    	echo "<tr>";
+		    	echo "<td>".$row['place']."</td>";
+		    	echo "<td>".$row['date']."</td>";
+		    	echo "<td>".$row['price']."</td>";
+          echo "<td>".$row['num_of_people']."</td>";
+          echo "<td>";
+          echo "<form method='post' action='delete_booking.php'>";
+          echo "<input type='hidden' name='booking_id' value='".$row['id']."'>";
+          echo "<button type='submit'>Delete</button>";

@@ -14,15 +14,28 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 	$tour_id = $_POST['tour_id'];
 	$user_id = $_SESSION['user_id'];
 	$booking_date = date('Y-m-d');
+	$num_of_people = $_POST['num_of_people'];
 	
 	// Step 3: Insert a new booking into the bookings table
 	$insert_query = "INSERT INTO bookings (user_id, tour_id, booking_date) VALUES ('$user_id', '$tour_id', '$booking_date')";
 	mysqli_query($conn, $insert_query);
-  echo "Booking successful!";+
-  header("Location: paymentpage.php");
+	$booking_id = mysqli_insert_id($conn);
+	
+	// Step 4: Insert the number of people into the numofppl table
+	$num_of_people_query = "INSERT INTO numofppl (tour_id, num_of_people) VALUES ('$tour_id', '$num_of_people')";
+	mysqli_query($conn, $num_of_people_query);
+	$num_of_people_id = mysqli_insert_id($conn);
+	
+	// Step 5: Update the bookings table with the numofppl id
+	$update_query = "UPDATE bookings SET numofppl_id = '$num_of_people_id' WHERE id = '$booking_id'";
+	mysqli_query($conn, $update_query);
+  
+	// Step 6: Redirect the user to the payment page
+	header("Location: paymentpage.php");
+	exit();
 }
 
-// Step 4: Retrieve all tours available
+// Step 7: Retrieve all tours available
 $tours_query = "SELECT tours.id, tours.place, tours.price, tours.description, datetour.date 
                 FROM tours 
                 JOIN datetour ON tours.id = datetour.tour_id";
@@ -108,7 +121,7 @@ $tours_result = mysqli_query($conn, $tours_query);
         }?>
 		<?php while ($tour = mysqli_fetch_assoc($tours_result)): ?>
 			<div class="card">
-				<img src="pics\<?php echo $tour['id']; ?>.jpeg" alt="<?php echo $tour['place']; ?>">
+				<img src="pics\<?php echo $tour['id']; ?>.jpg" alt="<?php echo $tour['place']; ?>">
 				<div class="card-details">
 					<h3><?php echo $tour['place']; ?></h3>
 					<p><?php echo $tour['description']; ?></p>
@@ -116,12 +129,20 @@ $tours_result = mysqli_query($conn, $tours_query);
 					<div class="date">Available date: <?php echo $tour['date']; ?></div>
 					<form method="POST">
 						<input type="hidden" name="tour_id" value="<?php echo $tour['id']; ?>">
-						<button type="submit" class="btn btn-primary">Book Now</button>
+						
+            <label for="num_of_people">Number of People:</label>
+            <select id="num_of_people" name="num_of_people">
+                <?php for ($i = 1; $i <= 10; $i++): ?>
+                    <option value="<?php echo $i; ?>"><?php echo $i; ?></option>
+                <?php endfor; ?>
+            </select>
+            <button type="submit" class="btn btn-primary">Book Now</button>
 					</form>
 				</div>
 			</div>
-		<?php endwhile; ?>
-  
+		<?php endwhile; ?> 
+
+
 
 	</div><br><br>
   <div style="text-align:center;">

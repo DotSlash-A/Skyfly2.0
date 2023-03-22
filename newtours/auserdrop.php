@@ -121,7 +121,7 @@
 		<label for="tour_date">Tour Date:</label>
 		<input type="date" id="tour_date" name="tour_date" required min="2023-03-16" style="width: 30%;><br>
 
-<input type="submit" value="Search"><br>
+<input type="submit" value="Search"><br>	
 		<input type="submit" class="btn btn-primary" value="Add Tour">	
 </form>
 </div>

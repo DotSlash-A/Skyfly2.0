@@ -19,37 +19,19 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 	$tour_id = $_POST['tour_id'];
 	$user_id = $_SESSION['user_id'];
 	$booking_date = date('Y-m-d');
-	$num_of_people = $_POST['num_of_people'];
 	
 	
 	// Step 3: Insert a new booking into the bookings table
 	$insert_query = "INSERT INTO bookings (user_id, tour_id, booking_date) VALUES ('$user_id', '$tour_id', '$booking_date')";
 	mysqli_query($conn, $insert_query);
-	$booking_id = mysqli_insert_id($conn);
-
-	$num_of_people_query = "INSERT INTO numofppl (tour_id, num_of_people) VALUES ('$tour_id', '$num_of_people')";
-	mysqli_query($conn, $num_of_people_query);
-	$num_of_people_id = mysqli_insert_id($conn);
-	
-	// Step 5: Update the bookings table with the numofppl id
-	$update_query = "UPDATE bookings SET numofppl_id = '$num_of_people_id' WHERE id = '$booking_id'";
-	mysqli_query($conn, $update_query);
-
-	// Step 6: Redirect the user to the payment page
-	header("Location: ../paymentpage.php");
-	exit();
 }
 
-
 // Step 4: Retrieve all tours available
-$sql = "SELECT tours.id, tours.place, tours.price, tours.description,datetour.date 
-				FROM tours 
-				INNER JOIN datetour ON tours.Id = datetour.tour_id WHERE tours.place = '".$_POST['place']."' AND datetour.date = '".$_POST['tour_date']."'";
+$sql = "SELECT tours.id, tours.place, tours.price, tours.description, datetour.date FROM tours INNER JOIN datetour ON tours.Id = datetour.tour_id WHERE tours.place = '".$_POST['place']."' AND datetour.date = '".$_POST['tour_date']."'";
 $tours_result = mysqli_query($conn, $sql);
 	// Step 6: Redirect the user to the payment page
-		// Step 6: Redirect the user to the payment page
-		header("Location: payments.php");
-		exit();
+
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
