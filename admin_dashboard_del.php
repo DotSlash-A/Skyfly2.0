@@ -146,58 +146,7 @@
   </article>
 </main>
 
-<main>
-  <article>
-    <section class="section blog">
-      <div class="container">   
-      <?php
-// Connect to database
-$servername = "localhost:3307";
-$username = "root";
-$password = "";
-$dbname = "testdb";
-$conn = new mysqli($servername, $username, $password, $dbname);
 
-// Check connection
-if ($conn->connect_error) {
-    die("Connection failed: " . $conn->connect_error);
-}
-
-// Query tours table
-$sql = "SELECT * FROM tours";
-$result = $conn->query($sql);
-
-// Generate HTML cards for each tour
-if ($result->num_rows > 0) {
-    echo '<ul class="popular-list">';
-    while($row = $result->fetch_assoc()) {
-        echo '<li>';
-        echo '<div class="popular-card">';
-        echo '<figure class="card-banner">';
-        echo '<a href="#">';
-        echo '<img src="./assets/images/popular-1.jpg" width="740" height="518" loading="lazy" alt="'.$row["place"].'" class="img-cover">';
-        echo '</a>';
-        echo '</figure>';
-        echo '<div class="card-content">';
-        echo '<div class="card-wrapper">';
-        echo '<div class="card-price">From $'.$row["price"].'</div>';
-        echo '</div>';
-        echo '<h3 class="card-title">';
-        echo '<a href="#">'.$row["place"].'</a>';
-        echo '</h3>';
-        echo '<p class="card-description">'.$row["description"].'</p>';
-        echo '</div>';
-        echo '</div>';
-        echo '</li>';
-    }
-    echo '</ul>';
-} else {
-    echo "No tours available.";
-}
-
-// Close database connection
-$conn->close();
-?>
 
               
 

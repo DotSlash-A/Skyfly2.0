@@ -78,7 +78,7 @@
           </li>
         </ul>
 
-        <a href="#" class="btn btn-secondary">Booking Now</a>
+        <a href="./logout.php" class="btn btn-secondary">logout</a>
 
       </nav>
 
@@ -97,26 +97,12 @@
       <div class="container">   
         <body>
           <h1>Booking Page</h1>
-          <!-- <form action="paymentprocess1.php" method="POST">
-  <label for="cardnumber">Credit/Debit Card Number:</label>
-  <input type="text" id="cardnumber" name="cardnumber" required style="width:30%;">
-  <br>
-  <label for="year">Expiration Year:</label>
-  <input type="text" id="year" name="year" required style="width:30%;">
-  <br>
-  <label for="name">Name on Card:</label>
-  <input type="text" id="name" name="name" required style="width:30%;">
-  <br>
-  <label for="phonenumber">Phone Number:</label>
-  <input type="text" id="phonenumber" name="phonenumber" required style="width:30%;">
-  <br>
-  <input class="btn btn-primary" type="submit" value="Pay">
-</form> -->
+          <h2>Enter your payment details:</h2>
 <form action="paymentprocess1.php" method="POST">
   <label for="cardnumber">Credit/Debit Card Number (16 digits):</label>
-  <input type="text" id="cardnumber" name="cardnumber" pattern="[0-9]{16}" required style="width:30%;">
+  <input type="text" id="cardnumber" name="cardnumber" pattern="[0-9]{16}" inputmode="numeric" required style="width:30%;">
   <br>
-  <label for="year">Expiration Year:</label>
+  <label for="year">Expiration Year:</label><br>
   <select id="year" name="year" required style="width:30%;">
     <option value="" selected disabled>Select year</option>
     <?php
@@ -131,10 +117,11 @@
   <input type="text" id="name" name="name" required style="width:30%;">
   <br>
   <label for="phonenumber">Phone Number (10 digits):</label>
-  <input type="text" id="phonenumber" name="phonenumber" pattern="[0-9]{10}" required style="width:30%;">
+  <input type="text" id="phonenumber" name="phonenumber" pattern="[0-9]{10}" inputmode="numeric" required style="width:30%;">
   <br>
   <input class="btn btn-primary" type="submit" value="Pay">
 </form>
+
 
 
         </body>

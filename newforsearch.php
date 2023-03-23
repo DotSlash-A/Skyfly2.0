@@ -78,7 +78,7 @@
 			<th>Tour</th>
 			<th>Date</th>
 			<th>Price</th>
-      <th>number of people</th
+
 		</tr>
 
 		<?php
@@ -113,7 +113,7 @@
 		    	echo "<td>".$row['place']."</td>";
 		    	echo "<td>".$row['date']."</td>";
 		    	echo "<td>".$row['price']."</td>";
-          echo "<td>".$row['num_of_people']."</td>";
+
           
 
 		    	echo "</tr>";

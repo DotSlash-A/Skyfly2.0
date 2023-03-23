@@ -59,20 +59,17 @@
         <ul class="navbar-list">
 
           <li>
-            <a href="#" class="navbar-link">Destinations</a>
+            <a href="./destinations.html" class="navbar-link">Destinations</a>
           </li>
 
           <li>
-            <a href="/tours.html" class="navbar-link">Tours</a>
-          </li>
-
-          <li>
-            <a href="/hotels.html" class="navbar-link">Hotels</a>
+            <a href="./tours.php" class="navbar-link">Tours</a>
           </li>
 
 
+
           <li>
-            <a href="/aboutus.html" class="navbar-link">About Us</a>
+            <a href="./aboutus.html" class="navbar-link">About Us</a>
           </li>
         </ul>
         <!-- HTML code for the button -->
@@ -106,11 +103,13 @@ if (!$conn) {
 }
 
 // Query to retrieve all bookings with user information and tour information
-$sql = "SELECT bookings.id, users.username AS user_name, tours.place AS tour_name,tours.price as amount, bookings.booking_date
+$sql = "SELECT bookings.id, users.username AS user_name, 
+tours.place AS tour_name,tours.price as amount, bookings.booking_date,
+        numofppl.num_of_people
         FROM bookings
         JOIN users ON bookings.user_id = users.id
+        LEFT JOIN numofppl ON bookings.tour_id = numofppl.tour_id 
         JOIN tours ON bookings.tour_id = tours.id";
-
 
 
 $result = mysqli_query($conn, $sql);
@@ -131,6 +130,7 @@ if (mysqli_num_rows($result) > 0) {
                     <th>Tour Name</th>
                     <th>Booking Date</th>
                     <th>Amount</th>
+                    <th>number of people</th>
                 </tr>
             </thead>
             <tbody>";
@@ -142,6 +142,7 @@ if (mysqli_num_rows($result) > 0) {
                 <td>" . $row["tour_name"] . "</td>
                 <td>" . $row["booking_date"] . "</td>
                 <td>" . $row["amount"] . "</td>
+                <td>" . $row["num_of_people"] . "</td>
             </tr>";
     }
     echo "</tbody></table>";

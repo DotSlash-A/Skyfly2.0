@@ -75,9 +75,8 @@
           </li>
         </ul>
 
-        <a href="#" class="btn btn-secondary">Booking Now</a>
-        <a href="logout" class="btn btn-secondary">Booking Now</a>
-
+        <a href="../logout.php" class="btn btn-secondary">Logout</a>
+        
       </nav>
 
     </div>
